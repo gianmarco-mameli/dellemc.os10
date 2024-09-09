@@ -106,7 +106,7 @@ def run_commands(module, commands, check_rc=True):
         if check_rc and rc != 0:
             module.fail_json(msg=to_text(err, errors='surrogate_or_strict'), rc=rc)
         responses.append(to_text(out, errors='surrogate_or_strict'))
-        responses = [elm.split("\n", 1)[1] if "\u001b" in elm and len(elm.split("\n", 1)) > 1 else "" if "\u001b" in elm else elm for elm in responses]
+        # responses = [elm.split("\n", 1)[1] if "\u001b" in elm and len(elm.split("\n", 1)) > 1 else "" if "\u001b" in elm else elm for elm in responses]
     return responses
 
 
