@@ -277,37 +277,37 @@ class Interfaces(FactsBase):
             list(group) for k, group in
             itertools.groupby(int_show_data, lambda x: pattern in x) if not k]
 
-        self.facts['interfaces_xml'] = multiple_xml
-        # # The output returns multiple xml trees
-        # # parse them before handling.
-        # for xml_interface in multiple_xml:
-        #     xml_string = ('').join(xml_interface)
-        #     xml_data = ET.fromstring(xml_string.encode('utf8'))
-        #     self.populate_interfaces(xml_data)
+        self.facts['int_show_data'] = int_show_data
+        # The output returns multiple xml trees
+        # parse them before handling.
+        for xml_interface in multiple_xml:
+            xml_string = ('').join(xml_interface)
+            xml_data = ET.fromstring(xml_string.encode('utf8'))
+            self.populate_interfaces(xml_data)
 
-        # self.facts['interfaces'] = self.intf_facts
+        self.facts['interfaces'] = self.intf_facts
 
-        # lldp_data = (self.responses[1]).splitlines()
-        # data = ''
-        # skip = True
-        # # The output returns multiple xml trees
-        # # parse them before handling.
-        # for line in lldp_data:
-        #     if pattern in line:
-        #         if skip is False:
-        #             xml_data = ET.fromstring(data.encode('utf8'))
-        #             self.populate_neighbors(xml_data)
-        #             data = ''
-        #         else:
-        #             skip = False
+        lldp_data = (self.responses[1]).splitlines()
+        data = ''
+        skip = True
+        # The output returns multiple xml trees
+        # parse them before handling.
+        for line in lldp_data:
+            if pattern in line:
+                if skip is False:
+                    xml_data = ET.fromstring(data.encode('utf8'))
+                    self.populate_neighbors(xml_data)
+                    data = ''
+                else:
+                    skip = False
 
-        #     data += line
+            data += line
 
-        # if skip is False:
-        #     xml_data = ET.fromstring(data.encode('utf8'))
-        #     self.populate_neighbors(xml_data)
+        if skip is False:
+            xml_data = ET.fromstring(data.encode('utf8'))
+            self.populate_neighbors(xml_data)
 
-        # self.facts['neighbors'] = self.lldp_facts
+        self.facts['neighbors'] = self.lldp_facts
 
     def populate_interfaces(self, interfaces):
 
