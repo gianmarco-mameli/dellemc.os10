@@ -275,7 +275,7 @@ class Interfaces(FactsBase):
 
         multiple_xml =  [
             list(group) for k, group in
-            itertools.groupby(lst, lambda x: pattern in x) if not k]
+            itertools.groupby(int_show_data, lambda x: pattern in x) if not k]
 
         # The output returns multiple xml trees
         # parse them before handling.
