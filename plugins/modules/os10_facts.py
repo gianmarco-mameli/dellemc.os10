@@ -123,7 +123,7 @@ ansible_net_neighbors:
 """
 
 import re
-
+import itertools
 try:
     from lxml import etree as ET
 except ImportError:
