@@ -273,21 +273,15 @@ class Interfaces(FactsBase):
         data = ''
         skip = True
 
+        multiple_xml =  [
+            list(group) for k, group in
+            itertools.groupby(lst, lambda x: pattern in x) if not k]
+
         # The output returns multiple xml trees
         # parse them before handling.
-        for line in int_show_data:
-            if pattern in line:
-                if skip is False:
-                    xml_data = ET.fromstring(data.encode('utf8'))
-                    self.populate_interfaces(xml_data)
-                    data = ''
-                else:
-                    skip = False
-
-            data += line
-
-        if skip is False:
-            xml_data = ET.fromstring(data.encode('utf8'))
+        for xml_interface in multiple_xml:
+            xml_string = ('').join(xml_interface)
+            xml_data = ET.fromstring(xml_string.encode('utf8'))
             self.populate_interfaces(xml_data)
 
         self.facts['interfaces'] = self.intf_facts
