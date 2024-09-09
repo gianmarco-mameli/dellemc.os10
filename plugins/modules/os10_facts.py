@@ -154,8 +154,8 @@ class FactsBase(object):
 class Default(FactsBase):
 
     COMMANDS = [
-        'show version | display-xml',
-        'show system | display-xml',
+        'show version | display-xml | no-more',
+        'show system | display-xml | no-more',
     ]
 
     def populate(self):
@@ -212,7 +212,7 @@ class Default(FactsBase):
 class Hardware(FactsBase):
 
     COMMANDS = [
-        'show version | display-xml',
+        'show version | display-xml | no-more',
         'show processes node-id 1 | grep "Mem :"'
     ]
 
@@ -254,8 +254,8 @@ class Config(FactsBase):
 class Interfaces(FactsBase):
 
     COMMANDS = [
-        'show interface | display-xml',
-        'show lldp neighbors | display-xml'
+        'show interface | display-xml | no-more',
+        'show lldp neighbors | display-xml | no-more'
     ]
 
     def __init__(self, module):
