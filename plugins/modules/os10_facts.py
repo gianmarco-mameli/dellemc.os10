@@ -277,7 +277,7 @@ class Interfaces(FactsBase):
             list(group) for k, group in
             itertools.groupby(int_show_data, lambda x: pattern in x) if not k]
 
-        self.facts['int_show_data'] = int_show_data
+        self.facts['self_responses'] = self.responses
         # The output returns multiple xml trees
         # parse them before handling.
         # for xml_interface in multiple_xml:
