@@ -481,7 +481,7 @@ def main():
         runable_subsets.update(VALID_SUBSETS)
 
     runable_subsets.difference_update(exclude_subsets)
-    runable_subsets.add('default')
+    # runable_subsets.add('default')
 
     facts = dict()
     facts['gather_subset'] = list(runable_subsets)
