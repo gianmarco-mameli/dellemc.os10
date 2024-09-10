@@ -264,20 +264,25 @@ class Interfaces(FactsBase):
         super(Interfaces, self).__init__(module)
 
     def populate(self):
-        super(Interfaces, self).populate()
-        self.facts['all_ipv4_addresses'] = list()
-        self.facts['all_ipv6_addresses'] = list()
+        try:
+            super(Interfaces, self).populate()
+            self.facts['all_ipv4_addresses'] = list()
+            self.facts['all_ipv6_addresses'] = list()
 
-        int_show_data = (self.responses[0]).splitlines()
-        pattern = '?xml version'
-        data = ''
-        skip = True
+            int_show_data = (self.responses[0]).splitlines()
+            pattern = '?xml version'
+            data = ''
+            skip = True
 
-        multiple_xml =  [
-            list(group) for k, group in
-            itertools.groupby(int_show_data, lambda x: pattern in x) if not k]
+            multiple_xml =  [
+                list(group) for k, group in
+                itertools.groupby(int_show_data, lambda x: pattern in x) if not k]
 
-        self.facts['test0'] = self.responses[0]
+            self.facts['test1'] = self.responses
+
+        except Exception as ex:
+            module.fail_json(msg=str(ex))
+
         # The output returns multiple xml trees
         # parse them before handling.
         # for xml_interface in multiple_xml:
