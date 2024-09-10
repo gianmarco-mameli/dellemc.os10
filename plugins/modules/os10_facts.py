@@ -258,10 +258,10 @@ class Interfaces(FactsBase):
         'show lldp neighbors | display-xml | no-more'
     ]
 
-    def __init__(self, module):
-        self.intf_facts = dict()
-        self.lldp_facts = dict()
-        super(Interfaces, self).__init__(module)
+    # def __init__(self, module):
+    #     self.intf_facts = dict()
+    #     self.lldp_facts = dict()
+    #     super(Interfaces, self).__init__(module)
 
     def populate(self):
         try:
