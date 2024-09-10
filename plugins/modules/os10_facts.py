@@ -266,6 +266,9 @@ class Interfaces(FactsBase):
     def populate(self):
         try:
             super(Interfaces, self).populate()
+            
+
+            self.facts['test2'] = self.responses
             self.facts['all_ipv4_addresses'] = list()
             self.facts['all_ipv6_addresses'] = list()
 
@@ -277,8 +280,6 @@ class Interfaces(FactsBase):
             multiple_xml =  [
                 list(group) for k, group in
                 itertools.groupby(int_show_data, lambda x: pattern in x) if not k]
-
-            self.facts['test1'] = self.responses
 
         except Exception as ex:
             module.fail_json(msg=str(ex))
